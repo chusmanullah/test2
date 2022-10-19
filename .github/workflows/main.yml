@@ -9,7 +9,7 @@ jobs:
  
  steps:
   -name: checkout from github
-   uses: actions/checkout@v2
+  uses: actions/checkout@v2
    
   -name: step2 - specify correct java version
    uses: actions/setup-java@v1
