@@ -21,3 +21,7 @@ jobs:
 
       - name: step 4 - List the current directory
         run: ls -a
+      - name: step 5 - Go to target folder and list all files
+        run: |
+            cd target
+            ls -a
