@@ -11,13 +11,12 @@ jobs:
   -name: checkout from github
   uses: actions/checkout@v2
    
-  -name: step2 - specify correct java version
-   uses: actions/setup-java@v1
-   with:
+-name: step2 - specify correct java version
+uses: actions/setup-java@v1
+with:
     java-version: 1.8
     
-  -name: step 3 - Build the maven project
-     run: mvn -B package --file pom.xml
+    -name: step 3 - Build the maven project
+    run: mvn -B package --file pom.xml
+  #  -name: step 4 - List the current directory
   
-  -name: step 4 - List the current directory
-    run: ls -a 
