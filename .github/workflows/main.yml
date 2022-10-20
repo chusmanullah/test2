@@ -1,0 +1,37 @@
+name: learning github actions
+# what will be the trigger for action
+on:
+  push:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout from github
+        uses: actions/checkout@v2
+
+      - name: step2 - specify correct java version
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+
+      - name: step 3 - Build the maven project
+        run: mvn -B package --file pom.xml
+
+      - name: step 4 - List the current directory
+        run: ls -a
+      - name: step 5 - Go to target folder and list all files
+        run: |
+          cd target
+          ls -a
+          echo "that is awesome"
+      - name: step 6 - copying jar file to server
+        uses: appleboy/scp-action@master
+        with:
+             host: ${{secrets.SERVER_IP_ADDRESS}}
+             username: ${{secrets.SERVER_USERNAME}}
+             key: ${{secrets.SERVER_SSH_KEY}}
+             port: 22
+             source: "test-1.0-SNAPSHOT.jar"
+             target: "/tmp/bdr/"
